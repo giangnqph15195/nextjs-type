@@ -1,23 +1,26 @@
 import Link from 'next/link'
 import React from 'react'
+import style from './header.module.scss'
 
 type Props = {}
 
 const Header = (props: Props) => {
   return (
-    <h1>Header
-      <ul>
-        <li>
-            <Link href="/">Home</Link>
+   <main>
+     <h1 className='text-[orange]'>Header</h1>
+      <ul className={style.menu}>
+        <li  className={style.menu__link}>
+            <Link className='text-[yellow]' href="/">Home</Link>
         </li>
-        <li>
-        <Link href="/products">Products</Link>
+        <li className={style.menu__link} >
+          <Link href="/products">Products</Link>
         </li>
-        <li>
-        <Link href="/">Home</Link>
+        <li className={style.menu__link}>
+          <Link href="/">Home</Link>
         </li>
       </ul>
-    </h1>
+    
+   </main>
   )
 }
 

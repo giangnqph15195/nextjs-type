@@ -1,0 +1,6 @@
+.menu {
+    @apply flex w-full bg-[#ddd] items-center justify-center;
+    &__link {
+        @apply p-4 hover:bg-[#ccc] hover:text-white duration-300
+    }
+}
