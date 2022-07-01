@@ -10,7 +10,7 @@ const ProductDetail = ({product}: ProductProps) => {
     // const router = useRouter()
     // const {id} = router.query
   return (
-    <div>ProductDetail update dasdasd<p className='text-[orange] text-[30px]'> {product.name}</p></div>
+    <div>ProductDetail update<p className='text-[orange] text-[30px]'> {product.name}</p></div>
   )
 }
 export const getStaticPaths:GetStaticPaths = async ()=>{
