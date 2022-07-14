@@ -1,12 +1,14 @@
+import { LayoutProps } from '@/models/layouts'
 import Link from 'next/link'
 import React from 'react'
 import style from './header.module.scss'
 
 type Props = {}
 
-const Header = (props: Props) => {
+const Header = ({children}: LayoutProps) => {
   return (
-   <main>
+  <div>
+     <main>
      <h1 className='text-[orange]'>Header</h1>
       <ul className={style.menu}>
         <li  className={style.menu__link}>
@@ -21,7 +23,10 @@ const Header = (props: Props) => {
       </ul>
     
    </main>
+   {children}
+  </div>
   )
 }
+
 
 export default Header

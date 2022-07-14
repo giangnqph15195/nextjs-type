@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import React from 'react'
-
+import SWR from 'swr'
 type PropsProdut = {
   products: any[]
 }
@@ -19,13 +19,13 @@ const Product = ({products}: PropsProdut) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<PropsProdut>= async (context)=>{
-  const data = await (await fetch(`https://6110f09bc38a0900171f0ed0.mockapi.io/products`)).json()
-  return {
-    props:{
-      products: data.map(item => ({id:item.id, name:item.name}))
-    }
+//export const getStaticProps: GetStaticProps<PropsProdut>= async (context)=>{
+  //const data = await (await fetch(`https://6110f09bc38a0900171f0ed0.mockapi.io/products`)).json()
+ // return {
+  //  props:{
+   //   products: data.map(item => ({id:item.id, name:item.name}))
+ //   }
     
-  }
-}
+  //}
+//}
 export default Product  

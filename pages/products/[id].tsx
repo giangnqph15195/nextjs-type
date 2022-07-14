@@ -7,6 +7,7 @@ type ProductProps = {
 }
 
 const ProductDetail = ({product}: ProductProps) => {
+  if(!product) return null
     // const router = useRouter()
     // const {id} = router.query
   return (
@@ -14,8 +15,8 @@ const ProductDetail = ({product}: ProductProps) => {
   )
 }
 export const getStaticPaths:GetStaticPaths = async ()=>{
-  const data = await(await fetch(`https://6110f09bc38a0900171f0ed0.mockapi.io/products`)).json()
-  const paths = data.map(product =>(
+  const {data} = await(await fetch(`https://6110f09bc38a0900171f0ed0.mockapi.io/products`)).json()
+  const paths = data.map((product:any) =>(
     {params: {id:product.id}}
   ))
   return{
