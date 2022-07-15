@@ -1,11 +1,11 @@
-import { LayoutProps } from '@/models/layouts'
+
 import Link from 'next/link'
 import React from 'react'
 import style from './header.module.scss'
 
 type Props = {}
 
-const Header = ({children}: LayoutProps) => {
+const Header = (props: Props) => {
   return (
   <div>
      <main>
@@ -23,7 +23,6 @@ const Header = ({children}: LayoutProps) => {
       </ul>
     
    </main>
-   {children}
   </div>
   )
 }
