@@ -1,35 +1,45 @@
-import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from 'next'
+import { GetServerSideProps, GetServerSidePropsContext, GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 type ProductProps = {
   product: any;
 }
 
 const ProductDetail = ({product}: ProductProps) => {
-  if(!product) return null
-    // const router = useRouter()
-    // const {id} = router.query
+  if(!product) return null;
   return (
-    <div>ProductDetail <p className='text-[orange] text-[30px]'> {product.name}</p></div>
+    <div>{product.name}</div>
   )
 }
-export const getStaticPaths:GetStaticPaths = async ()=>{
-  const {data} = await(await fetch(`https://6110f09bc38a0900171f0ed0.mockapi.io/products`)).json()
-  const paths = data.map((product:any) =>(
-    {params: {id:product.id}}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const data = await (await fetch(`http://localhost:3001/products`)).json();
+  const paths = data.map((product: any) => (
+    { params: { id: product.id } }
   ))
-  return{
+  return {
     paths,
-    fallback: false
+    fallback: true // blocking or true
+  }
+}
+// server
+export const getStaticProps: GetStaticProps<ProductProps> = async (context: GetStaticPropsContext) => {
+  console.log('context', context);
+  const product = await (await fetch(`http://localhost:3001/products/${context.params?.id}`)).json();
+  return {
+    props: {product},
+    revalidate: 5
   }
 }
 
-export const getStaticProps:GetStaticProps<ProductProps> = async (context: GetStaticPathsContext)=>{
-  const product = await(await fetch(`https://6110f09bc38a0900171f0ed0.mockapi.io/products/${context.params?.id}`)).json()  
-  return{
-    props:{product},
-    revalidate:60
-    }
-  }
+// export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+//   console.log('context', context);
+//   context.res.setHeader("Cache-Control", "s-maxage=10, stale-while-revalidate")
+//   const product = await (await fetch(`https://6110f09bc38a0900171f0ed0.mockapi.io/products/${context.params?.id}`)).json();
+//   return {
+//     props: { product }
+//   }
+// }
+
 export default ProductDetail
