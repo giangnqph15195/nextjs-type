@@ -1,4 +1,5 @@
 import { getall } from '@/api/products'
+import { url } from 'inspector'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import React from 'react'
@@ -8,15 +9,16 @@ type PropsProdut = {
   products: any[]
 }
 
-const Product = ({products}: PropsProdut) => {
+const Product = () => {
 
-  const fetcher = async () =>{
-    const {data} = await getall("products")
-    return data
+  const fetcher = async (url:string) =>{
+    const {data} = await getall(url)
+    return data 
   }
    const {data , error} = useSWR('/products',fetcher,{dedupingInterval:5000})
    if(!data)return <div>Loading ... </div>
    if(error)return <div>Errors</div>
+   
   return (
     <div className='text-[red] text-[30px]'>Product <br />
     <div>
@@ -26,6 +28,7 @@ const Product = ({products}: PropsProdut) => {
     )
       
     )}</div>
+    dnsajdj
     </div>
   )
 }

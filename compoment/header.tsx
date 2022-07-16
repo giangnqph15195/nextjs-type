@@ -9,7 +9,6 @@ const Header = (props: Props) => {
   return (
   <div>
      <main>
-     <h1 className='text-[orange]'>Header</h1>
       <ul className={style.menu}>
         <li  className={style.menu__link}>
             <Link className='text-[yellow]' href="/">Home</Link>
@@ -18,7 +17,7 @@ const Header = (props: Props) => {
           <Link href="/products">Products</Link>
         </li>
         <li className={style.menu__link}>
-          <Link href="/">Home</Link>
+          <Link href="/admin">admin</Link>
         </li>
       </ul>
     

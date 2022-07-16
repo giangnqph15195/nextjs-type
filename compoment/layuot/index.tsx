@@ -4,7 +4,7 @@ import Header from '../Header'
 
 type Props = {}
 
-const weblayout = ({children}: LayoutProps) => {
+const Layout = ({children}: LayoutProps) => {
   return (
     <div>
       <Header/>
@@ -13,4 +13,4 @@ const weblayout = ({children}: LayoutProps) => {
   )
 }
 
-export default weblayout
+export default Layout
