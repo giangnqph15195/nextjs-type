@@ -13,20 +13,25 @@ const admin = () => {
    // const {data} = await getall(url)
    // return data 
  // }
-   const {data,error,mutate,create} = userproduct()
+   const {data,error,mutate,create,dele} = userproduct()
    if(!data)return <div>Loading ... </div>
    if(error)return <div>Errors</div>
    
   return (
-    <div>admin
+    <div>admin  
       <div>
       {data.map(item=>(
-
-      <p key={item.id}><Link href={`products/${item.id}`}>{item.name}</Link></p>
+        <tr key={item._id}>
+          <td>{item.name}</td>
+          <td><Link href={`admin/edit/${item._id}`}>edit</Link></td>
+          <td><button onClick={()=> dele(`${item._id}`)} >Remove</button></td>
+          <td></td>
+        </tr>
+      // <p key={item.id}><Link href={`products/${item.id}`}>{item.name}</Link></p>
     )
       
     )}</div>
-    <button onClick={() => mutate(create({ name: "Product A1111" }))}>Add</button>
+    <button><Link href={`admin/add`}>ADD</Link></button>
     </div>
     
   )

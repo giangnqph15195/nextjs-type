@@ -9,14 +9,14 @@ type ProductProps = {
 const ProductDetail = ({product}: ProductProps) => {
   if(!product) return null;
   return (
-    <div>{product.name}</div>
+    <div>{product.name}, {product.price}, <img src={`${product.image}`} alt="" /></div>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await (await fetch(`http://localhost:3001/products`)).json();
+  const data = await (await fetch(`http://localhost:3001/api/products`)).json();
   const paths = data.map((product: any) => (
-    { params: { id: product.id } }
+    { params: { id: product._id } }
   ))
   return {
     paths,
@@ -26,11 +26,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // server
 export const getStaticProps: GetStaticProps<ProductProps> = async (context: GetStaticPropsContext) => {
   console.log('context', context);
-  const product = await (await fetch(`http://localhost:3001/products/${context.params?.id}`)).json();
+  const product = await (await fetch(`http://localhost:3001/api/product/${context.params?.id}`)).json();
   return {
     props: {product},
     revalidate: 5
   }
+  
 }
 
 // export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {

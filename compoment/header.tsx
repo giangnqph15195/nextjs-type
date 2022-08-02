@@ -1,11 +1,12 @@
 
+import { LayoutProps } from '@/models/layouts'
 import Link from 'next/link'
 import React from 'react'
 import style from './header.module.scss'
 
 type Props = {}
 
-const Header = (props: Props) => {
+const Header = ({children}: LayoutProps) => {
   return (
   <div>
      <main>
@@ -19,9 +20,16 @@ const Header = (props: Props) => {
         <li className={style.menu__link}>
           <Link href="/admin">admin</Link>
         </li>
+        <li className={style.menu__link}>
+          <Link href="/signup">signup</Link>
+        </li>
+        <li className={style.menu__link}>
+          <Link href="/signin">signin</Link>
+        </li>
       </ul>
     
    </main>
+   {children}
   </div>
   )
 }
